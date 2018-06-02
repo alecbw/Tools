@@ -22,7 +22,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 print "Searching for followers of " + accountvar
 
-users = tweepy.Cursor(api.followers, screen_name=accountvar, count=300).items()
+users = tweepy.Cursor(api.followers, screen_name=accountvar, count=200).items()
 
 count = 0
 errorCount = 0
@@ -66,11 +66,8 @@ print "Completed. Error Count = " + str(errorCount) + "; Total Users = " + str(c
 
 
 """
-Main API reference: http://docs.tweepy.org/en/v3.2.0/api.html#API
-
-http://docs.tweepy.org/en/v3.2.0/api.html#API  wait_on_rate_limit & wait_on_rate_limit_notify
-
-
-
+Full credit to mataxu on StackOverflow for the inspiration & the bulk of the work on this
 http://stackoverflow.com/questions/31000178/how-to-get-large-list-of-followers-tweepy
+
+Main API reference: http://docs.tweepy.org/en/v3.2.0/api.html#API
 """
