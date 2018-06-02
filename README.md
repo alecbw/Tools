@@ -30,7 +30,7 @@ A quick local script that takes the Clearbit Company Name to URL API (50k calls/
 
 A similarly concise script that uses the Tweepy library to export Twitter followers. Rate limited (via the Twitter API) to 12000/hour. Relates to:
 
-[Link](http://docs.tweepy.org/en/v3.2.0/api.html) Tweepy API Overview
+[Link](http://docs.tweepy.org/en/v3.6.0/api.html) Tweepy API Overview
 
 
 [Link](https://stackoverflow.com/users/4994901/mataxu) Inspiration / Foundation by Mataxu on StackOverflow
