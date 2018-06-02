@@ -1,6 +1,9 @@
 # Tools
 Code snippets and other helper functions
 
+Libraries, Frameworks, and SaaS used:
+Requests, Beautiful Soup, Tweepy, Webhooks, REST APIs, Alfred, Zapier, Clearbit
+
 **Alfred_Zapier_Parsing**
 
 A simple string parser that allows Alfred -> Zapier webhooks to be significantly more accessible. Relates to:
