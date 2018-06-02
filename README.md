@@ -5,15 +5,18 @@ Code snippets and other helper functions
 
 A simple string parser that allows Alfred -> Zapier webhooks to be significantly more accessible. Relates to:
 
-Setup of Alfred Workflow Overview [Here](https://zapier.com/blog/zapier-for-alfred/)
+[Link](https://zapier.com/blog/zapier-for-alfred/) Setup of Alfred Workflow Overview 
 
-Github version (more concise) [Here](https://github.com/zapier/zapier-for-alfred)
+[Link](https://github.com/zapier/zapier-for-alfred) Github version (more concise) 
 
-Packal Link for Alfred Worfklow [Here](http://www.packal.org/workflow/zapier-alfred)
+[Link](http://www.packal.org/workflow/zapier-alfred) Packal Link for Alfred Worfklow 
 
 
 **Clearbit_Company_To_URL**
+A quick local script that takes the Clearbit Company Name to URL API (50k calls/mo free) to write an .xlsx worth of names and find the matching URLs. Relates to:
 
+[Link](https://blog.clearbit.com/company-name-to-domain-api/) Company Name To Domain API Overview
+[Link](https://dashboard.clearbit.com/docs#name-to-domain-api) Company Name To Domain API Documentation
 
 **Export_TW_Followers**
 
