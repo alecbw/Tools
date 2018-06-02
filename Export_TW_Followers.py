@@ -5,7 +5,7 @@ import tweepy
 
 ########## ~ Careful of overwrites ~ ############
 
-accountvar = "paulg"
+accountvar = "paulg" # Change this variable to change which account you're exporting the followers of
 
 ##############################################
 
@@ -22,7 +22,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 print "Searching for followers of " + accountvar
 
-users = tweepy.Cursor(api.followers, screen_name=accountvar, count=200).items()
+users = tweepy.Cursor(api.followers, screen_name=accountvar, count=200).items() # 3000 followers per 15 minutes
 
 count = 0
 errorCount = 0
@@ -45,20 +45,21 @@ while True:
     try:
         twit_url = "twitter.com/" + user.screen_name.encode('UTF-8')
         fc.writerow([
-            user.name.encode('UTF-8'),
-            user.screen_name.encode('UTF-8'),
-            user.id_str, user.verified,
-            user.description.encode('UTF-8'),
-            str(user.followers_count),
-            str(user.statuses_count),
-            user.location.encode('UTF-8'),
-            user.time_zone,
-            user.lang.title(),
-            user.following,
-            user.url,
-            twit_url])
+            user.name.encode('UTF-8'),          # Name
+            user.screen_name.encode('UTF-8'),   # Username
+            user.id_str,                        # Twitter ID
+            user.verified,                      # Verified - TRUE/FALSE (Blue Checkmark)
+            user.description.encode('UTF-8'),   # Plain text descirption
+            str(user.followers_count),          # Number of Folowers
+            str(user.statuses_count),           # Number of Statuses
+            user.location.encode('UTF-8'),      # Location (Self-reported, I think)
+            user.time_zone,                     # Timezone (Detected, I think)
+            user.lang.title(),                  # Language (Detected, I think)
+            user.following,                     # Following - TRUE/FALSE (If they are following your account)
+            user.url,                           # External links, if they have one in their bio
+            twit_url])                          # Twitter account URL 
 
-    except UnicodeEncodeError:
+    except UnicodeEncodeError:                  # This seems to be handled now, but keeping in for continuity
         errorCount += 1
         print "Unicode Error"
 
