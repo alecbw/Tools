@@ -2,7 +2,9 @@
 Code snippets and other helper functions
 
 **Alfred_Zapier_Parsing**
-A simple string parser that allows Alfred -> Zapier webhooks to be significantly more accessible. Relates to
+
+A simple string parser that allows Alfred -> Zapier webhooks to be significantly more accessible. Relates to:
+
 Setup of Alfred Workflow Overview [Here](https://zapier.com/blog/zapier-for-alfred/)
 
 Github version (more concise) [Here](https://github.com/zapier/zapier-for-alfred)
