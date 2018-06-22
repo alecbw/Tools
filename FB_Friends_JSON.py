@@ -31,7 +31,6 @@ print count1
 for parsed_li in parsed.findAll('li', {'class': "_43q7"}): # Querying into li for each individual
 
     for a in parsed_li.findAll('a', {'class': "link"}):
-        # Info, Name, Date, Link = "" * 4 # Intentionally overwrite holder variables
         count1 += 1                     # Increment counter variable
 
         Link = a['href']                 # Get FB Profile Link
@@ -44,5 +43,5 @@ for parsed_li in parsed.findAll('li', {'class': "_43q7"}): # Querying into li fo
         ws1['B' + str(count1)] = Date
         ws1['C' + str(count1)] = Link
 
-wb1.save("FB Friends2.xlsx") # Saving our file (as an xlsx filetype)
+wb1.save("FB Friends2.xlsx")            # Saving our file (as an xlsx filetype)
 
