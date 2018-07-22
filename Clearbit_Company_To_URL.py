@@ -6,13 +6,12 @@ import requests
 
 ##############################################
 
-IOFile = "Connections" + ".xlsx"
+IOFile = "InputFileString" + ".xlsx"
 
 start_row = 2
+end_row = 232
+name_column = 1                 # The column from your input spreadsheet that the company names are in (e.g. Col A -> 1)
 
-end_row = 951
-
-count1 = 0                  # Setting up counter variable, intentionally at zero
 ##############################################
 
 wb1 = load_workbook(IOFile) # Importing our existing Workbook (Excel Sheet)
@@ -25,14 +24,13 @@ ws2['A1'] = "Name"  # Setting up headers in the first row
 ws2['B1'] = "Link"
 
 Clearbit_Query_URL = "https://company.clearbit.com/v1/domains/find?" # Base query URL
-CLEARBIT_KEY = "YOURKEYGOES HERE" # KEEP IT PRIVATE !!!!!
+CLEARBIT_KEY = "YOUR KEY GOES HERE"                                  # KEEP IT PRIVATE !!!!!
 
 ##############################################
 
-def query_API(company_name):
-    global count1
+def query_API(inputCompanyName, inputRowNumber):
 
-    payload = {"name": company_name}                     # Setting up payload with our Company Names
+    payload = {"name": inputCompanyName}                 # Setting up payload with our Company Names
     headers = {"Authorization":"Bearer " + CLEARBIT_KEY} # Setting Auth Header
 
     response = requests.request("GET", Clearbit_Query_URL, params=payload, headers=headers)
@@ -40,12 +38,10 @@ def query_API(company_name):
 
     pprint(response.json())                              # Typically commented out. Comment in if you'd like
 
-    count1 += 1                                          # Keeps track of row for output spreadhseet.
-
     try:                                                 # Try / except keeps track of the unhelpfully different keys to the response object
         if JResponse['name']:                            # A successful 200 lookup should have a 'name' key
-            ws2['A' + str(count1)] = JResponse['name']   # Writing each variable to the Workbook
-            ws2['B' + str(count1)] = JResponse['domain']
+            ws2['A' + str(inputRowNumber)] = JResponse['name']   # Writing each variable to the Workbook
+            ws2['B' + str(inputRowNumber)] = JResponse['domain']
 
     except KeyError:                # Thrown if a company name is not found
         print JResponse['error']    # Prints error text
@@ -53,7 +49,7 @@ def query_API(company_name):
 
 def iterate_rows():                 # Helper function to iterate through imported spreadsheet
 
-    for row in ws1.iter_rows(min_row=start_row, min_col=4, max_col=4, max_row=end_row):
+    for row in ws1.iter_rows(min_row=start_row, max_row=end_row, min_col=name_column, max_col=name_column):
         for cell in row:
             if not cell.value:                  # Detect and skip empty cells
                 print "Skipping empty cell..."
@@ -61,13 +57,12 @@ def iterate_rows():                 # Helper function to iterate through importe
             elif type(cell.value) == long:      # Weird error handling I had to add
                 print "Skipping long type..."
                 continue
+            else:
+                query_API(cell.value, cell.row)
 
-        query_API(cell.value)
-
-
-iterate_rows()
-
-wb2.save("LIURLs.xlsx") # Saving our file (as an xlsx filetype)
+if __name__ == '__main__':
+    iterate_rows()
+    wb2.save("CCTU Result for: " + IOFile) # Saving our file (as an xlsx filetype)
 
 
 
